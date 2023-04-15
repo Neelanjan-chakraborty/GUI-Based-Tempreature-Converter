@@ -1,64 +1,59 @@
-import tkinter as tk
-from tkinter import ttk, messagebox
-import pyperclip
+import sys
+from PyQt5.QtWidgets import QApplication, QLabel, QComboBox, QLineEdit, QPushButton, QWidget, QHBoxLayout, QVBoxLayout
 
 
-class TemperatureConverter(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
+class TemperatureConverter(QWidget):
+    def __init__(self):
+        super().__init__()
 
-        self.master = master
-        self.master.title("Temperature Converter-Bilal Khan and Neelanjan")
-        self.style = ttk.Style()
-        self.style.theme_use("default")
-        self.create_widgets()
+        # Create UI elements
+        self.temp_label = QLabel("Temperature:")
+        self.temp_input = QLineEdit()
+        self.scale_label = QLabel("Scale:")
+        self.scale_dropdown = QComboBox()
+        self.scale_dropdown.addItems(["Celsius", "Fahrenheit", "Kelvin"])
+        self.convert_button = QPushButton("Convert")
+        self.result_label = QLabel("Result:")
 
-    def create_widgets(self):
-        # Create the input label and entry widget
-        self.input_label = ttk.Label(self.master, text="Enter temperature:")
-        self.input_label.grid(row=0, column=0, padx=5, pady=5)
-        self.input_entry = ttk.Entry(self.master)
-        self.input_entry.grid(row=0, column=1, padx=5, pady=5)
+        # Connect the button to the conversion function
+        self.convert_button.clicked.connect(self.convert_temperature)
 
-        # Create the scale label and option menu
-        self.scale_label = ttk.Label(self.master, text="Select scale:")
-        self.scale_label.grid(row=1, column=0, padx=5, pady=5)
-        self.scale_var = tk.StringVar(value="Celsius")
-        self.scale_menu = ttk.OptionMenu(self.master, self.scale_var, "Celsius", "Celsius", "Fahrenheit", "Kelvin")
-        self.scale_menu.grid(row=1, column=1, padx=5, pady=5)
+        # Create layouts
+        input_layout = QHBoxLayout()
+        input_layout.addWidget(self.temp_label)
+        input_layout.addWidget(self.temp_input)
+        input_layout.addWidget(self.scale_label)
+        input_layout.addWidget(self.scale_dropdown)
 
-        # Create the round label and entry widget
-        self.round_label = ttk.Label(self.master, text="Round to decimal places:")
-        self.round_label.grid(row=2, column=0, padx=5, pady=5)
-        self.round_entry = ttk.Entry(self.master, width=5)
-        self.round_entry.insert(tk.END, "2")
-        self.round_entry.grid(row=2, column=1, padx=5, pady=5)
+        result_layout = QHBoxLayout()
+        result_layout.addWidget(self.result_label)
 
-        # Create the convert button
-        self.convert_button = ttk.Button(self.master, text="Convert", command=self.convert_temperature)
-        self.convert_button.grid(row=3, column=0, padx=5, pady=5)
+        button_layout = QHBoxLayout()
+        button_layout.addWidget(self.convert_button)
 
-        # Create the output label and copy button
-        self.output_label = ttk.Label(self.master, text="")
-        self.output_label.grid(row=3, column=1, padx=5, pady=5)
-        self.copy_button = ttk.Button(self.master, text="Copy", command=self.copy_to_clipboard)
-        self.copy_button.grid(row=4, column=1, padx=5, pady=5)
+        main_layout = QVBoxLayout()
+        main_layout.addLayout(input_layout)
+        main_layout.addLayout(result_layout)
+        main_layout.addLayout(button_layout)
 
-        # Create the dark mode button
-        self.dark_mode_button = ttk.Button(self.master, text="Dark Mode", command=self.toggle_dark_mode)
-        self.dark_mode_button.grid(row=4, column=0, padx=5, pady=5)
+        # Set the main layout for the window
+        self.setLayout(main_layout)
+
+        # Set the window properties
+        self.setWindowTitle("Temperature Converter")
+        self.resize(300, 150)
 
     def convert_temperature(self):
         # Get the temperature and selected scale from the input widgets
-        temperature_string = self.input_entry.get()
-        scale = self.scale_var.get()
+        temperature_string = self.temp_input.text()
+        scale = self.scale_dropdown.currentText()
 
         # Convert the temperature string to a number
         try:
             temperature = float(temperature_string)
         except ValueError:
             # Display an error message if the temperature is not a valid number
-            messagebox.showerror("Error", "Invalid temperature Measure")
+            self.result_label.setText("Result: Invalid temperature")
             return
 
         # Convert the temperature to the selected scale
@@ -69,37 +64,15 @@ class TemperatureConverter(tk.Frame):
         else:
             converted_temperature = temperature - 273.15
 
-        # Round the converted temperature to the specified number of decimal places
-        try:
-            decimal_places = int(self.round_entry.get())
-            converted
-        except ValueError:
-            # Display an error message if the decimal places is not a valid integer
-            messagebox.showerror("Error:", "Invalid number of decimal places, Please Correct")
-            return
+        # Round the converted temperature to 2 decimal places
+        rounded_temperature = round(converted_temperature, 2)
 
-        rounded_temperature = round(converted_temperature, decimal_places)
-
-        # Update the output label with the converted temperature
-        self.output_label.config(text=f"{rounded_temperature:.{decimal_places}f} {scale}")
-
-    def copy_to_clipboard(self):
-        # Copy the converted temperature to the clipboard
-        converted_temperature = self.output_label.cget("text")
-        pyperclip.copy(converted_temperature)
-        theme_frame = ttk.LabelFrame(self, text='Themes')
-        theme_frame.grid(padx=10, pady=10, ipadx=20, ipady=20, sticky='w')
-
-    def toggle_dark_mode(self):
-        # Toggle dark mode
-        if self.style.theme_use() == "default":
-            self.style.theme_use('alt')
-        else:
-            self.style.theme_use("default")
+        # Update the result label with the converted temperature
+        self.result_label.setText(f"Result: {rounded_temperature:.2f} {scale}")
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = TemperatureConverter(root)
-    #app.pack()
-    root.mainloop()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    temperature_converter = TemperatureConverter()
+    temperature_converter.show()
+    sys.exit(app.exec_())
