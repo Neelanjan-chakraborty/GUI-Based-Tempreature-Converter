@@ -58,7 +58,7 @@ class TemperatureConverter(tk.Frame):
             temperature = float(temperature_string)
         except ValueError:
             # Display an error message if the temperature is not a valid number
-            messagebox.showerror("Error", "Invalid temperature")
+            messagebox.showerror("Error", "Invalid temperature Measure")
             return
 
         # Convert the temperature to the selected scale
