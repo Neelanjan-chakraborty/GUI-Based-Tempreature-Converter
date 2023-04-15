@@ -63,6 +63,7 @@ class TemperatureConverter(QWidget):
 	def open_github_profile(self):
 		# Open GitHub profile in default web browser
 		webbrowser.open_new_tab("https://github.com/Neelanjan-chakraborty")
+		webbrowser.open_new_tab("https://github.com/BilalKhanlol")
 
 	def convert_temperature(self):
 		# Get the temperature and selected scale from the input widgets
