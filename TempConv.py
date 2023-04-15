@@ -47,6 +47,7 @@ output_label.pack()
 about_label = tk.Label(root, text="About", fg="blue", cursor="hand2")
 about_label.pack()
 about_label.bind("<Button-1>", lambda e: webbrowser.open_new("https://github.com/Neelanjan-chakraborty"))
+bout_label.bind("<Button-2>", lambda e: webbrowser.open_new("https://github.com/BilalKhanlol"))
 
 # Start the main event loop
 root.mainloop()
