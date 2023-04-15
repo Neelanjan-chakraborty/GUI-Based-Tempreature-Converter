@@ -87,11 +87,13 @@ class TemperatureConverter(tk.Frame):
         # Copy the converted temperature to the clipboard
         converted_temperature = self.output_label.cget("text")
         pyperclip.copy(converted_temperature)
+        theme_frame = ttk.LabelFrame(self, text='Themes')
+        theme_frame.grid(padx=10, pady=10, ipadx=20, ipady=20, sticky='w')
 
     def toggle_dark_mode(self):
         # Toggle dark mode
         if self.style.theme_use() == "default":
-            self.style.theme_use("black")
+            self.style.theme_use('alt')
         else:
             self.style.theme_use("default")
 
