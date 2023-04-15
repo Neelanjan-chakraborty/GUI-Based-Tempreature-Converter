@@ -22,7 +22,7 @@ root = tk.Tk()
 root.title("Temperature Converter")
 
 # Create the label and entry widgets for the temperature
-temperature_label = tk.Label(root, text="Enter the temperature:")
+temperature_label = tk.Label(root, text="Please Enter the temperature:")
 temperature_label.pack()
 temperature_entry = tk.Entry(root)
 temperature_entry.pack()
