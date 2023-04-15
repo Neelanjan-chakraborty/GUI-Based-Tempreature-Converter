@@ -2,6 +2,7 @@ import sys
 #from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.QtWidgets import QApplication, QLabel, QComboBox, QLineEdit, QPushButton, QWidget, QHBoxLayout, QVBoxLayout
 import qdarktheme
+import webbrowser
 
 
 class TemperatureConverter(QWidget):
