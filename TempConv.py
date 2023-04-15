@@ -21,11 +21,13 @@ class TemperatureConverter(QWidget):
 		self.scale_dropdown = QComboBox()
 		self.scale_dropdown.addItems(["Celsius", "Fahrenheit", "Kelvin"])
 		self.convert_button = QPushButton("Convert")
+		self.about = QPushButton("About")
 		self.result_label = QLabel("Result:")
 
 
 		# Connect the button to the conversion function
 		self.convert_button.clicked.connect(self.convert_temperature)
+		self.about.clicked.connect(self.open_github_profile)
 
 		# Create layouts
 		input_layout = QHBoxLayout()
@@ -40,10 +42,15 @@ class TemperatureConverter(QWidget):
 		button_layout = QHBoxLayout()
 		button_layout.addWidget(self.convert_button)
 
+
+		button_layout1 = QHBoxLayout()
+		button_layout1.addWidget(self.about)
+
 		main_layout = QVBoxLayout()
 		main_layout.addLayout(input_layout)
 		main_layout.addLayout(result_layout)
 		main_layout.addLayout(button_layout)
+		main_layout.addLayout(button_layout1)
 
 		# Set the main layout for the window
 		self.setLayout(main_layout)
@@ -54,7 +61,7 @@ class TemperatureConverter(QWidget):
 
 	def open_github_profile(self):
 		# Open GitHub profile in default web browser
-		webbrowser.open_new_tab("https://github.com/your_username")
+		webbrowser.open_new_tab("https://github.com/Neelanjan-chakraborty")
 
 	def convert_temperature(self):
 		# Get the temperature and selected scale from the input widgets
