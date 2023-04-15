@@ -75,7 +75,7 @@ class TemperatureConverter(tk.Frame):
             converted
         except ValueError:
             # Display an error message if the decimal places is not a valid integer
-            messagebox.showerror("Error", "Invalid number of decimal places")
+            messagebox.showerror("Error", "Invalid number of decimal places, Please Correct")
             return
 
         rounded_temperature = round(converted_temperature, decimal_places)
