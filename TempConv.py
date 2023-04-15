@@ -45,7 +45,7 @@ class TemperatureConverter(tk.Frame):
         self.copy_button.grid(row=4, column=1, padx=5, pady=5)
 
         # Create the dark mode button
-        self.dark_mode_button = ttk.Button(self.master, text="Dark Mode", command=self.toggle_dark_mode)
+        self.dark_modse_button = ttk.Button(self.master, text="Dark Mode", command=self.toggle_dark_mode)
         self.dark_mode_button.grid(row=4, column=0, padx=5, pady=5)
 
     def convert_temperature(self):
