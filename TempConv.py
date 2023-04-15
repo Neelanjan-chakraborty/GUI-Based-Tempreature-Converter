@@ -91,7 +91,7 @@ class TemperatureConverter(tk.Frame):
     def toggle_dark_mode(self):
         # Toggle dark mode
         if self.style.theme_use() == "default":
-            self.style.theme_use("clam")
+            self.style.theme_use("aqua")
         else:
             self.style.theme_use("default")
 
