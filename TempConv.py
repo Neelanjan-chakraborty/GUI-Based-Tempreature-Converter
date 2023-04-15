@@ -15,7 +15,7 @@ class TemperatureConverter(tk.Frame):
 
     def create_widgets(self):
         # Create the input label and entry widget
-        self.input_label = ttk.Label(self.master, text="Enter temperature:")
+        self.input_label = ttk.Label(self.master, text="Enter temperature in the Desired Form:")
         self.input_label.grid(row=0, column=0, padx=5, pady=5)
         self.input_entry = ttk.Entry(self.master)
         self.input_entry.grid(row=0, column=1, padx=5, pady=5)
