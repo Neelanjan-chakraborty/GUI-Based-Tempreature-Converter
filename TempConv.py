@@ -44,7 +44,7 @@ output_label = tk.Label(root, text="")
 output_label.pack()
 
 # Create the about label and link to GitHub profile
-about_label = tk.Label(root, text="About", fg="blue", cursor="hand2")
+about_label = tk.Label(root, text="About Us", fg="blue", cursor="hand2")
 about_label.pack()
 about_label.bind("<Button-1>", lambda e: webbrowser.open_new("https://github.com/Neelanjan-chakraborty"))
 bout_label.bind("<Button-2>", lambda e: webbrowser.open_new("https://github.com/BilalKhanlol"))
