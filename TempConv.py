@@ -19,7 +19,7 @@ def convert_temperature():
 
 # Create the main window
 root = tk.Tk()
-root.title("Neels GUI Temperature Converter")
+root.title("Neels and Bilals GUI Temperature Converter")
 
 # Create the label and entry widgets for the temperature
 temperature_label = tk.Label(root, text="Please Enter the temperature:")
