@@ -8,7 +8,7 @@ class TemperatureConverter(tk.Frame):
         super().__init__(master)
 
         self.master = master
-        self.master.title("Temperature Converter-Bilal and Neel")
+        self.master.title("Temperature Converter-Bilal and Neelanjan")
         self.style = ttk.Style()
         self.style.theme_use("default")
         self.create_widgets()
